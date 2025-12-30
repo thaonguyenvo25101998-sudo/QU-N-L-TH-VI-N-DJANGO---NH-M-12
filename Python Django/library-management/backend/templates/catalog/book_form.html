@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+  {% if is_edit %}
+    Sửa sách
+  {% else %}
+    Thêm sách
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">
+  {% if is_edit %}
+    Sửa thông tin sách
+  {% else %}
+    Thêm sách mới
+  {% endif %}
+</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if is_edit %}
+    <button type="submit" class="btn btn-warning">Sửa</button>
+  {% else %}
+    <button type="submit" class="btn btn-primary">Thêm</button>
+  {% endif %}
+  <a href="{% url 'book_list' %}" class="btn btn-secondary">Hủy</a>
+</form>
+{% endblock %}

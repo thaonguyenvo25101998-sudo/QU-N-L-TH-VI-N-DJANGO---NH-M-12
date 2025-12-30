@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+  {% if is_edit %}
+    Sửa độc giả
+  {% else %}
+    Thêm độc giả
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">
+    {% if is_edit %}
+      ✏️ Sửa thông tin độc giả
+    {% else %}
+      📖 Thêm độc giả mới
+    {% endif %}
+  </h2>
+
+  <form method="post" class="card p-3 shadow-sm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="d-flex justify-content-start gap-2 mt-3">
+      {% if is_edit %}
+        <button type="submit" class="btn btn-warning">Sửa</button>
+      {% else %}
+        <button type="submit" class="btn btn-primary">Thêm</button>
+      {% endif %}
+      <a href="{% url 'borrower_list' %}" class="btn btn-secondary">Hủy</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
